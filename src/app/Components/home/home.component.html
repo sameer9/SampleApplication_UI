@@ -1,0 +1,148 @@
+<script>
+    debugger;
+    function toggleSidebar() {
+      document
+        .getElementById("sidebarWithContainer")
+        .classList.toggle("collapse-sidebar");
+    }
+  </script>
+  
+  <div class="page-container sidebar-with-container" id="sidebarWithContainer">
+    <div class="sidebar bg-dark text-light">
+      <button
+        onclick="toggleSidebar()"
+        id="toggleSidebarBtn"
+        class="btn btn-outline-light mobile-btn wh-30"
+        type="button"
+      >
+        <i class="fa fa-fw fa-close"></i>
+      </button>
+      <div class="sidebar-menu card card-body bg-dark text-light h-100">
+          <a
+          
+          class="navbar-brand d-flex align-items-center mb-3"
+        >
+          <!-- <div
+            class="btn btn-outline-light wh-30 d-flex align-items-center justify-content-center me-2"
+          >
+            SK
+          </div> -->
+          <span class="menu-text">
+            <img class="round-image"
+              src="assets/sklogo.jpg"
+              alt="logo"
+              height="40"
+              class="w-75"
+            />
+          </span>
+        </a>
+
+  
+        <a
+          id="links"
+          *ngIf="isSuperUser"
+          class="text-light rounded"
+          routerLink="/home/user"
+          routerLinkActive="active"
+          ><i class="fa fa-fw fa-home menu-icon" id="homeIcon"></i>
+          <span class="menu-text">Home</span></a
+        >
+        <a
+        id="links"
+        *ngIf="isSuperUser"
+        class="text-light rounded"
+        routerLink="/home/user"
+        routerLinkActive="active"
+        >
+        
+        <i class="fa fa-fw fa-user menu-icon" id="userIcon"
+        routerLink="/home/user" routerLinkActive="active"
+        ></i>
+        <span class="menu-text">User Dashboard</span></a
+      >
+  
+        <a id="links" class="text-light rounded" routerLink="/home/about" routerLinkActive="active"><i class="fa fa-fw fa-address-book menu-icon"></i><span class="menu-text" onclick="toggleButton()">About</span></a>
+      
+      
+        <!-- <div class="share-groups col-auto">
+          <button onclick="toggleButton()" id="links" class="btn btn-link  text-light  w-100 text-start shadow-none d-flex align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReportsGroups" aria-expanded="false" aria-controls="collapseGroups">
+              <i class="fa fa-fw fa-pie-chart menu-icon"></i>
+              <span class="menu-text">Reports</span>
+              <i class="fa fa-caret-down ms-auto menu-text pe-2"></i>
+          </button>
+          <div class="collapse mt-1 w-100 left-sub-menu" id="collapseReportsGroups">
+              <div class=" w-100 bg-secondary rounded">
+                  <a class="text-white " *ngIf="isSuperUser"  routerLink="/user/user-wise-report" routerLinkActive="active"><i class="fa fa-fw  fa-user-plus menu-icon"></i><span class="menu-text">Userwise Report</span></a>
+                  <a class="text-white "  routerLink="/user/social-media-wise" routerLinkActive="active"><i class="fa fa-fw fa-envelope menu-icon"></i> <span class="menu-text">Social Mediawise</span></a>
+                  <a class="text-white "  *ngIf="isSuperUser" routerLink="/user/post-insights" routerLinkActive="active"><i class="fa fa-fw  fa-cubes menu-icon"></i><span class="menu-text">FB Page Activity</span></a>
+                  <a class="text-white "  *ngIf="isSuperUser" routerLink="/user/group-activity" routerLinkActive="active"><i class="fa fa-fw fa-envelope menu-icon"></i> <span class="menu-text">FB Group Activity</span></a>
+                  <a class="text-white " *ngIf="isSuperUser" routerLink="/user/page-activity" routerLinkActive="active"><i class="fa fa-fw fa-envelope menu-icon"></i> <span class="menu-text">FB Page Insights</span></a>
+                  <a class="text-white "  *ngIf="isSuperUser" routerLink="/user/trending-post" routerLinkActive="active"><i class="fa fa-fw fa-podcast menu-icon"></i> <span class="menu-text">Trending Post</span></a>                       
+              </div>
+          </div>
+      </div> -->
+  
+      </div>
+    </div>
+    <section
+      id="userDashboard1"
+      class="user-dashboard-section content-wrapper mb-4 w-100"
+    >
+      <header id="mainHeader" class="main-header bg-white shadow-sm">
+        <nav class="navbar navbar-expand-lg navbar-light bg-whight p-md-0 mb-0">
+          <div class="container logo-menu-container">
+            <button
+              onclick="toggleSidebar()"
+              id="toggleSidebarBtn"
+              class="btn btn-outline-primary"
+              type="button" id="toggleButton"
+            >
+              <i class="fa fa-fw fa-bars"></i>
+            </button>
+  
+            <div
+              class="collapse navbar-collapse ms-auto"
+              id="navbarSupportedContent"
+            >
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center"></ul>
+            </div>
+            <div class="user-groups position-relative">
+              <button
+                class="btn btn-link text-dark w-auto text-start shadow-none d-flex align-items-center"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#collapseUserInfo"
+                aria-expanded="false"
+                aria-controls="collapseUserInfo"
+              >
+                <div
+                  class="btn btn-outline-dark wh-30 d-flex align-items-center justify-content-center me-2 p-0"
+                >
+                  <img id="profileImage"
+                    src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png"
+                    alt="image"
+                  />
+                </div>
+                <!-- <span>{{ loggedUserName }}</span> -->
+                <span>{{currentUserInfo.userName}}</span>
+              </button>
+              <div class="collapse w-100 position-absolute" id="collapseUserInfo">
+                <div class="card card-body w-100 bg-dark p-2">
+                  <a class="text-white" href="#" (click)="signOut()"
+                    ><i class="fa fa-sign-out me-2"></i><span>Log out</span></a
+                  >
+                  <!-- <a class="text-white"
+                    ><i class="fa fa-info-circle me-2"></i
+                    ><span>More info</span></a -->
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </header>
+      <router-outlet></router-outlet>
+    </section>
+  </div>
+  
+  
